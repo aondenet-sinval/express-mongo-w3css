@@ -1,0 +1,28 @@
+var express = require('express');
+var router = express.Router();
+
+//Import the mongoose module
+var mongoose = require('mongoose');
+
+//Set up default mongoose connection
+var mongoDB = 'mongodb://127.0.0.1/my_database';
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+router.get('/cool',(req, res, next) =>{
+  res.send('Você é tão legal, que criei essa rota massa');
+});
+router.get('/alunos',(req, res, next) =>{
+  res.send('Bem vindo aluno');
+});
+
+module.exports = router;
